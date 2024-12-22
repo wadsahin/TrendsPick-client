@@ -1,21 +1,54 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useAuth } from "../../hook/useAuth";
+import Swal from "sweetalert2";
 const Navbar = () => {
-  const user = "sahin";
+  const { user, userLogout } = useAuth();
+
+  // Handle user logout
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Want to logout!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        userLogout()
+          .then(() => {
+            Swal.fire({
+              title: "Logout!",
+              text: "Logged-out successfully!",
+              icon: "success"
+            });
+          })
+          .catch(error => {
+            console.log("ERROR From Logout", error.code);
+          })
+
+        
+      }
+    });
+
+  }
+
   const links = <>
     <div className="flex flex-col gap-2 md:gap-5 lg:flex-row  text-base font-medium">
 
       {
         user ?
           <>
-            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
             <NavLink to="/queries">Queries</NavLink>
             <NavLink to="/recommendations-for-me">Recommendations For Me</NavLink>
             <NavLink to="/my-queries">My Queries</NavLink>
             <NavLink to="/my-recommendations">My recommendations</NavLink>
           </>
           : <>
-            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
             <NavLink to="/queries">Queries</NavLink>
           </>
       }
@@ -50,16 +83,14 @@ const Navbar = () => {
           <a className="text-3xl font-semibold">TrendPick</a>
         </div>
       </div>
-      {/* <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {links}
-        </ul>
-      </div> */}
       <div className="hidden lg:flex gap-8 ">
         <ul className="menu menu-horizontal px-1">
           {links}
         </ul>
-        <Link to="/signIn" className="btn">Login</Link>
+        {
+          user ? <button onClick={handleLogout} className="btn btn-error text-white">Logout</button> : <Link to="/signIn" className="btn btn-warning text-white text-base">Login</Link>
+        }
+
       </div>
     </div>
   );

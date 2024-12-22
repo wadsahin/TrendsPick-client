@@ -1,7 +1,13 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useAuth } from "../../hook/useAuth";
 
 const SignIn = () => {
+
+  // Get data from context
+  const {loginWithGoogle, userLogin} = useAuth();
 
   // Handle user email & password login
   const handleLoginForm = e => {
@@ -14,7 +20,16 @@ const SignIn = () => {
 
   // Handle google login
   const handleGoogleLogin = () => {
-
+    loginWithGoogle()
+    .then(result => {
+      // console.log(result.user);
+      if(result.user){
+        alert("User successfully logged-In");
+      }
+    })
+    .catch(error => {
+      console.log("Error", error.code);
+    })
   }
 
   return (
