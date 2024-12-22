@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hook/useAuth";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
-
+  const navigate = useNavigate();
   // Get data from context
-  const {loginWithGoogle, userLogin} = useAuth();
+  const { loginWithGoogle, userLogin } = useAuth();
 
   // Handle user email & password login
   const handleLoginForm = e => {
@@ -16,20 +16,43 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log({ email, password });
+    // user login
+    userLogin(email, password)
+      .then(result => {
+        // console.log(result.user);
+        Swal.fire({
+          title: "Logged-In!",
+          text: "You have successfully Logged-In.",
+          icon: "success"
+        });
+        navigate("/");
+      })
+      .catch(error => {
+        console.log(error.message);
+        Swal.fire({
+          title: "ERROR!!",
+          text: `${error.code}`,
+          icon: "success",
+        });
+      })
   }
 
   // Handle google login
   const handleGoogleLogin = () => {
     loginWithGoogle()
-    .then(result => {
-      // console.log(result.user);
-      if(result.user){
-        alert("User successfully logged-In");
-      }
-    })
-    .catch(error => {
-      console.log("Error", error.code);
-    })
+      .then(result => {
+        if (result.user) {
+          Swal.fire({
+            title: "Logged-In with Google!",
+            text: "You have successfully Logged-In.",
+            icon: "success"
+          });
+          navigate("/");
+        }
+      })
+      .catch(error => {
+        console.log("Error", error.code);
+      })
   }
 
   return (
@@ -67,7 +90,7 @@ const SignIn = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-orange-400 text-lg text-white">Login</button>
+              <button className="btn bg-orange-400 text-lg text-white">Sign In</button>
               <p>Don't have any account? Please <Link className="underline text-blue-600 font-medium" to="/signup">Signup</Link></p>
             </div>
           </form>
