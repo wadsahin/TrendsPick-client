@@ -1,4 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
 
@@ -8,7 +9,7 @@ const SignIn = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({email, password});
+    console.log({ email, password });
   }
 
   // Handle google login
@@ -52,6 +53,7 @@ const SignIn = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn bg-orange-400 text-lg text-white">Login</button>
+              <p>Don't have any account? Please <Link className="underline text-blue-600 font-medium" to="/signup">Signup</Link></p>
             </div>
           </form>
         </div>
