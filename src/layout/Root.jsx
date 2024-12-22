@@ -10,7 +10,7 @@ const Root = () => {
         <Header />
       </div>
       {/* Dynamic routes */}
-      <div className="my-10">
+      <div className="mb-10">
         <Outlet />
       </div>
       {/* Footer */}
