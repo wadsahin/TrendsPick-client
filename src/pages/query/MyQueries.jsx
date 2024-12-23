@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
 import banner from "../../assets/slider/slider-img-4.jpg";
 import { useAuth } from "../../hook/useAuth";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import MyQueryCard from "../../components/MyQueryCard";
 const MyQueries = () => {
-  const {user} = useAuth();
+  const [myQueries, setMyQueries] = useState([]);
+  const { user } = useAuth();
   // console.log(user)
+  useEffect(() => {
+    axios.get(`http://localhost:5000/my-queries?email=${user?.email}`)
+      .then(res => {
+        // console.log(res.data);
+        setMyQueries(res.data);
+      })
+  }, [])
   return (
     <div>
       {/* header start */}
@@ -27,11 +38,22 @@ const MyQueries = () => {
       {/* header end */}
 
       {/* my queries section */}
-      <div>
+      <div className="w-11/12 lg:w-10/12 mx-auto">
         <h2 className="text-center mt-5 text-4xl font-semibold">My Queries</h2>
         <p className="border-b-2 border-b-orange-500 w-56 mx-auto mt-3"></p>
         {/* all queries load here in card format */}
-        
+        {
+          myQueries.length ?
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-5 my-10">
+              {
+                myQueries.map(query => <MyQueryCard key={query._id} query={query} />)
+              }
+            </div>
+            : <div className="my-10">
+              <h2 className="text-2xl font-semibold mb-5">There is no available queries or data.</h2>
+              <Link to="/add-queries" className="btn btn-primary">Add Queries</Link>
+            </div>
+        }
       </div>
     </div>
   );
