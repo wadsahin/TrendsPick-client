@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Active route styles */
+.active{
+  border: 1px solid orange;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
 .swiper {
   width: 100%;
   height: 100%;

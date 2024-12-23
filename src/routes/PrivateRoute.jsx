@@ -1,9 +1,18 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hook/useAuth";
 
-const PrivateRoute = () => {
+const PrivateRoute = ({children}) => {
+  const {user, loading} = useAuth();
+  // if(loading){
+
+  // }
+
+  if(user){
+    return children;
+  }
+
   return (
-    <div>
-      PrivateRoute
-    </div>
+    <Navigate to="/signIn"></Navigate>
   );
 };
 
