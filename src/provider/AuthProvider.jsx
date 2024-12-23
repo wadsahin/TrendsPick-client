@@ -1,10 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
 
-// product-recommendation-system
-
-// QXq1LC9xVO9v4255
 
 export const AuthContext = createContext(null);
 
@@ -29,7 +26,10 @@ const AuthProvider = ({children}) => {
     return signInWithPopup(auth, provider);
   }
 
-
+  // User update
+  const userUpdate = (updatedInfo) =>{
+    return updateProfile(auth.currentUser, updatedInfo);
+  }
 
   // User Logout
   const userLogout = () =>{
@@ -40,7 +40,7 @@ const AuthProvider = ({children}) => {
   useEffect(() =>{
     const unsubscribe =  onAuthStateChanged(auth, (currentUser) =>{
       if(currentUser){
-        // console.log(currentUser);
+        console.log(currentUser);
         setUser(currentUser);
       }
       else{
@@ -63,6 +63,7 @@ const AuthProvider = ({children}) => {
     userLogin,
     loginWithGoogle,
     userLogout,
+    userUpdate,
     
   }
 

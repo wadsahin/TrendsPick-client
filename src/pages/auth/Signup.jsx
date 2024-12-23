@@ -5,36 +5,44 @@ import Swal from "sweetalert2";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const {userSignup} = useAuth();
+  const { userSignup, userUpdate } = useAuth();
 
-  const handleSignupForm = e =>{
+  const handleSignupForm = e => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    // console.log({name, email, photo, password});
 
     // firebase user creation
     userSignup(email, password)
-    .then(result => {
-      // console.log(result.user);
-      Swal.fire({
-        title: "Good job!",
-        text: "You have successfully registered.",
-        icon: "success"
-      });
-      navigate("/");
-    })
-    .catch(error => {
-      console.log(error.code);
-      Swal.fire({
-        title: "Opps!!",
-        text: `${error.code}`,
-        icon: "error"
-      });
-    })
+      .then(result => {
+        // update name & photo
+        const updatedInfo = { displayName: name, photoURL: photo };
+        userUpdate(updatedInfo)
+          .then(() => {
+            console.log("Registered user with name & photo.")
+          })
+          .catch(error => {
+            console.log(error.code);
+          })
+
+        Swal.fire({
+          title: "Good job!",
+          text: "You have successfully registered.",
+          icon: "success"
+        });
+        navigate("/");
+      })
+      .catch(error => {
+        // console.log(error.code);
+        Swal.fire({
+          title: "Opps!!",
+          text: `${error.code}`,
+          icon: "error"
+        });
+      })
   }
   return (
     <div className="hero bg-base-200 min-h-screen w-11/12 lg:w-10/12 mx-auto my-5">
