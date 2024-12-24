@@ -1,8 +1,13 @@
 import { FcLike } from "react-icons/fc";
 import { Link, useLoaderData } from "react-router-dom";
 import { useAuth } from "../../hook/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import RecommendationCard from "../../components/RecommendationCard";
 
 const QueryDetails = () => {
+  const [recommendations, setRecommendations] = useState([]);
   const { user } = useAuth();
   const query = useLoaderData();
   const { _id, prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt, recommendationCount } = query;
@@ -33,11 +38,52 @@ const QueryDetails = () => {
       recommender_name: user?.displayName,
       recommender_email: user?.email,
       recommendedAt: Date.now(),
-
     };
-    console.log(recommendationInfo);
 
+    // console.log(recommendationInfo);
+    // Add recommendation into DB
+    axios.post("http://localhost:5000/add-recommendation", recommendationInfo)
+      .then(res => {
+        // console.log(res.data);
+        if (res.data.insertedId) {
+          // Increase Recommendation Count
+          fetch(`http://localhost:5000/recommendation-count/${_id}`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json"
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              // console.log(data);
+              if (data.modifiedCount > 0) {
+                Swal.fire({
+                  title: "Added!",
+                  text: "Your recommendation added successfully!",
+                  icon: "success"
+                })
+              }
+            })
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
+
+  // Load all recommendation based on particular query
+  useEffect(() => {
+    axios.get(`http://localhost:5000/recommendations/${_id}`)
+      .then(res => {
+        // console.log(res.data);
+        setRecommendations(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, []);
+
+  // console.log("total recommendation", recommendations?.length)
 
   return (
     <div className="card card-compact bg-base-100 max-w-3xl mx-auto shadow-xl my-10">
@@ -66,7 +112,7 @@ const QueryDetails = () => {
       <div className="sm:px-5">
         <hr className="border-dashed mt-5" />
         <div className="card bg-base-100 w-full max-w-4xl mx-auto my-5 shrink-0">
-          <h3 className="text-lg font-semibold">Add your recommendation bellow</h3>
+          <h3 className="text-lg font-semibold">Add your recommendation here</h3>
           <form onSubmit={handleAddRecommendation} className="card-body">
             {/* row 1 */}
             <div className="flex gap-5 mb-5">
@@ -107,9 +153,11 @@ const QueryDetails = () => {
       {/* All recommendation of this query */}
       <div className="pt-2 pb-10 rounded-md bg-gray-100">
         <p className="mt-2 ml-3">All recommendations....</p>
-        <div className="w-11/12 mx-auto mt-1 bg-gray-50 p-2">
-          <p>Shain</p>
-        </div>
+        {
+          recommendations.length ?
+            recommendations.map(recommendation => <RecommendationCard key={recommendation._id} recommendation={recommendation} />)
+            : "No recommendation yet..."
+        }
       </div>
     </div>
   );

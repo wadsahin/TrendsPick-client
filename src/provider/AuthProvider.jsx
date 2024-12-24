@@ -50,6 +50,7 @@ const AuthProvider = ({children}) => {
       }
       else{
         setUser(null);
+        setLoading(false);
         // console.log("User is signed out");
       }
     })
@@ -64,6 +65,7 @@ const AuthProvider = ({children}) => {
   const authInfo = {
     user,
     loading,
+    setLoading,
     userSignup,
     userLogin,
     loginWithGoogle,

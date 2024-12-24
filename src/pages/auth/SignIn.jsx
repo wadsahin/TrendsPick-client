@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const SignIn = () => {
   const navigate = useNavigate();
   // Get data from context
-  const { loginWithGoogle, userLogin } = useAuth();
+  const { loginWithGoogle, userLogin, setLoading } = useAuth();
 
   // Handle user email & password login
   const handleLoginForm = e => {
@@ -28,7 +28,8 @@ const SignIn = () => {
         navigate("/");
       })
       .catch(error => {
-        console.log(error.message);
+        // console.log(error.message);
+        setLoading(false);
         Swal.fire({
           title: "ERROR!!",
           text: `${error.code}`,
@@ -51,7 +52,10 @@ const SignIn = () => {
         }
       })
       .catch(error => {
-        console.log("Error", error.code);
+        if(error){
+          setLoading(false);
+          console.log("Error", error.code);
+        }
       })
   }
 
