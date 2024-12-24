@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Carousel from "./Carousel";
 import axios from "axios";
 import RecentQueryCard from "../../components/RecentQueryCard";
+import OurPartners from "../../components/OurPartners";
+import Careers from "../../components/Careers";
 
 const Home = () => {
   const [queries, setQueries] = useState([]);
@@ -37,9 +39,20 @@ const Home = () => {
               No data available!!
             </div>
         }
-
-
       </div>
+
+      {/* Extra sections */}
+      <div className="w-11/12 lg:w-10/12 mx-auto my-10">
+        {/* Query Partners section */}
+        <div>
+          <OurPartners />
+        </div>
+        {/* Careers */}
+        <div className="mt-16">
+          <Careers />
+        </div>
+      </div>
+
     </div>
   );
 };
