@@ -104,7 +104,7 @@ const QueryDetails = () => {
             className='h-80'
             src={prod_image} />
         </figure>
-        <div className="card-body">
+        <div className="card-body sm:mx-10 md:mx-0">
           <div className="flex items-center gap-2">
             <img className="w-12 h-12 rounded-full" src={user_photo} alt="" />
             <h4 className="bg-gray-300 px-2 rounded-sm font-medium">{user_name}</h4>
@@ -123,10 +123,10 @@ const QueryDetails = () => {
       <div className="sm:px-5">
         <hr className="border-dashed mt-5" />
         <div className="card bg-base-100 w-full max-w-4xl mx-auto my-5 shrink-0">
-          <h3 className="text-lg font-semibold">Add your recommendation here</h3>
+          <h3 className="text-lg font-semibold ml-2">Add your recommendation here</h3>
           <form onSubmit={handleAddRecommendation} className="card-body">
             {/* row 1 */}
-            <div className="flex gap-5 mb-5">
+            <div className="flex flex-col sm:flex-row gap-5 mb-5">
               <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Recommendation Title</span>
@@ -141,7 +141,7 @@ const QueryDetails = () => {
               </div>
             </div>
             {/* row 2 */}
-            <div className="flex gap-5">
+            <div className="flex flex-col sm:flex-row gap-5">
               <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Recommendation product image</span>
@@ -167,7 +167,7 @@ const QueryDetails = () => {
         {
           recommendations.length ?
             recommendations.map(recommendation => <RecommendationCard key={recommendation._id} recommendation={recommendation} />)
-            : "No recommendation yet..."
+            : <p className="text-xl font-medium ml-3">No recommendation yet...</p>
         }
       </div>
     </div>

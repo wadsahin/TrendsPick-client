@@ -61,7 +61,7 @@ const SignIn = () => {
 
   return (
     <div className="hero bg-base-200 min-h-screen w-11/12 lg:w-10/12 mx-auto my-5">
-      <div className="hero-content flex-col lg:flex-row">
+      <div className="hero-content flex-col md:flex-row">
         <div className="text-center flex-1 lg:text-left">
           <h2 className="text-4xl font-semibold mb-3">TrendPicks</h2>
           <p className="text-lg mb-3 text-gray-700">A platform for sharing knowledge and better understanding the world.</p>

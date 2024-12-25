@@ -15,7 +15,7 @@ const OurPartners = () => {
       <h2 className="text-3xl font-semibold mb-1">Our Partners</h2>
       <p className="text-base text-gray-500">Working with those companies driving the future of query & recommendation operations</p>
       <div className="border border-teal-600 mt-3"></div>
-      <div className="mt-8 flex flex-wrap gap-10 md:w-9/12 mx-auto">
+      <div className="mt-8 flex flex-wrap justify-center gap-10 lg:w-10/12 mx-auto">
         
         {/* partner-1 */}
         <div className="border p-2 rounded-sm hover:scale-110 hover:duration-300">
