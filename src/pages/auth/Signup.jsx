@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { userSignup, userUpdate } = useAuth();
+  const { userSignup, loginWithGoogle, userUpdate } = useAuth();
 
   const handleSignupForm = e => {
     e.preventDefault();
@@ -44,6 +44,27 @@ const Signup = () => {
         });
       })
   }
+
+  // Handle google login
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then(result => {
+        if (result.user) {
+          Swal.fire({
+            title: "Logged-In with Google!",
+            text: "You have successfully Logged-In.",
+            icon: "success"
+          });
+          navigate("/");
+        }
+      })
+      .catch(error => {
+        if (error) {
+          setLoading(false);
+          console.log("Error", error.code);
+        }
+      })
+  }
   return (
     <div className="hero bg-base-200 min-h-screen w-11/12 lg:w-10/12 mx-auto my-5">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -52,7 +73,7 @@ const Signup = () => {
           <p className="text-lg mb-3 text-gray-700">A platform for sharing knowledge and better understanding the world.</p>
           <p className="text-gray-500">By continuing you indicate that you agree to TrendPick's <span className="text-blue-600">Terms of Service</span> and <span className="text-blue-600">Privacy Policy.</span> </p>
           <div className="py-6">
-            <button className="border border-teal-500 py-2 px-5 text-xl font-medium flex items-center gap-2 w-full justify-center">
+            <button onClick={handleGoogleLogin} className="border border-teal-500 py-2 px-5 text-xl font-medium flex items-center gap-2 w-full justify-center">
               <FcGoogle size={28} />
               Continue with Google
             </button>
