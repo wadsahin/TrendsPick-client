@@ -55,7 +55,7 @@ const MyQueryCard = ({ query, myQueries, setMyQueries }) => {
         <p><span className="text-base font-medium">Boycotting reason:</span> {reason}</p>
         <div className="card-actions justify-end mt-5">
           <Link to={`/query-details/${_id}`} className="btn bg-teal-600 text-white">View Details</Link>
-          <button className="btn btn-warning">Update</button>
+          <Link to={`/query-update/${_id}`} className="btn btn-warning">Update</Link>
           <button onClick={() => handleQueryDelete(_id)} className="btn btn-error text-white">Delete</button>
         </div>
       </div>
