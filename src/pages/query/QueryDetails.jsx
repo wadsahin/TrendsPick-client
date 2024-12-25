@@ -1,5 +1,5 @@
 import { FcLike } from "react-icons/fc";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { useAuth } from "../../hook/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -8,8 +8,10 @@ import RecommendationCard from "../../components/RecommendationCard";
 
 const QueryDetails = () => {
   const [recommendations, setRecommendations] = useState([]);
+  const [query, setQuery] = useState({});
   const { user } = useAuth();
-  const query = useLoaderData();
+  const {id} = useParams();
+  // console.log(query);
   const { _id, prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt, recommendationCount } = query;
 
   // customize creation time
@@ -17,6 +19,15 @@ const QueryDetails = () => {
   const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
   const formattedDate = date.toLocaleDateString('en-US', options);
 
+  useEffect(() =>{
+    fetch(`http://localhost:5000/query-update/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data);
+      setQuery(data);
+    })
+  }, [id])
+  
   // handle Add Recommendation
   const handleAddRecommendation = (e) => {
     e.preventDefault();
@@ -81,7 +92,7 @@ const QueryDetails = () => {
       .catch(error => {
         console.log(error);
       })
-  }, []);
+  }, [_id]);
 
   // console.log("total recommendation", recommendations?.length)
 

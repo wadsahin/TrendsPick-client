@@ -45,10 +45,15 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><AddQueries /></PrivateRoute>,
       },
       {
-        path: "/query-update/:id",
+        path: `/query-update/:id`,
         element: <PrivateRoute><UpdateQuery /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/query-update/${params.id}`)
+        // loader: ({params}) => fetch(`http://localhost:5000/query-update/${params.id}`)
       },
+      // {
+      //   path: "/query-update/:id",
+      //   element: <PrivateRoute><UpdateQuery /></PrivateRoute>,
+      //   loader: ({params}) => fetch(`http://localhost:5000/query-update/${params.id}`)
+      // },
       {
         path: "/query-details/:id",
         element: <PrivateRoute><QueryDetails /></PrivateRoute>,
