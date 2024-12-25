@@ -14,7 +14,7 @@ const MyQueries = () => {
         // console.log(res.data);
         setMyQueries(res.data);
       })
-  }, [])
+  }, [user])
   return (
     <div>
       {/* header start */}
@@ -46,7 +46,7 @@ const MyQueries = () => {
           myQueries.length ?
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-5 my-10">
               {
-                myQueries.map(query => <MyQueryCard key={query._id} query={query} />)
+                myQueries.map(query => <MyQueryCard key={query._id} query={query} myQueries={myQueries} setMyQueries={setMyQueries} />)
               }
             </div>
             : <div className="my-10">

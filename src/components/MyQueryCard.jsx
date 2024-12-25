@@ -1,10 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-const MyQueryCard = ({ query }) => {
-  const {_id, prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt, recommendationCount} = query;
-  
-  // const {prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt, recommendationCount} = query;
+const MyQueryCard = ({ query, myQueries, setMyQueries }) => {
+  const { _id, prod_name, prod_brand, prod_image, query_title, reason } = query;
+
+  // Handle Query Delete
+  const handleQueryDelete = (id) => {
+    // console.log("Click delete", id)
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/delete-query/${id}`, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+          .then(data => {
+            // console.log(data);
+            if (data.deletedCount > 0) {
+              const remaining = myQueries.filter(myQuery => myQuery._id !== _id);
+              setMyQueries(remaining);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your query has been removed.",
+                icon: "success"
+              });
+            }
+          })
+        
+      }
+    });
+
+
+  }
 
   return (
     <div className="card card-compact bg-base-100 shadow-xl">
@@ -21,7 +56,7 @@ const MyQueryCard = ({ query }) => {
         <div className="card-actions justify-end mt-5">
           <Link to={`/query-details/${_id}`} className="btn bg-teal-600 text-white">View Details</Link>
           <button className="btn btn-warning">Update</button>
-          <button className="btn btn-error text-white">Delete</button>
+          <button onClick={() => handleQueryDelete(_id)} className="btn btn-error text-white">Delete</button>
         </div>
       </div>
     </div>
