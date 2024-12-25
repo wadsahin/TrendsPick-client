@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 const UpdateQuery = () => {
   const query = useLoaderData();
+  console.log(query);
   const { prod_name, prod_brand, prod_image, query_title, reason } = query;
   const { id } = useParams();
 
@@ -43,7 +44,6 @@ const UpdateQuery = () => {
         }
       })
 
-    // loader: ({params}) => fetch(`http://localhost:5000/update-query/${params.id}`),
   }
   return (
     <div>
