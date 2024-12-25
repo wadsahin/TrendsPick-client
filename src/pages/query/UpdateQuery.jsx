@@ -1,9 +1,10 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateQuery = () => {
   const query = useLoaderData();
-  console.log(query);
+  const navigate = useNavigate();
+  // console.log(query);
   const { prod_name, prod_brand, prod_image, query_title, reason } = query;
   const { id } = useParams();
 
@@ -41,6 +42,7 @@ const UpdateQuery = () => {
             text: "Your query has been updated successfully",
             icon: "success"
           });
+          navigate("/my-queries");
         }
       })
 

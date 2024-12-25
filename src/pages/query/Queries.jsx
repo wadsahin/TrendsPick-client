@@ -5,9 +5,11 @@ import { IoGridOutline } from "react-icons/io5";
 import { useState } from "react";
 
 const Queries = () => {
-  const [layout, setLayout] = useState(0);
   const queries = useLoaderData();
-  // console.log(layout);
+  const [searchInput, setSearchInput] = useState("");
+  const [layout, setLayout] = useState(0);
+  // console.log(searchInput);
+
 
   // Handle One Column Layout
   const handleOneColumnLayout = () => {
@@ -28,7 +30,7 @@ const Queries = () => {
         {/* Search part */}
         <div>
           <label className="input input-bordered flex items-center gap-2">
-            <input type="text" className="grow" placeholder="Search" />
+            <input onChange={(e) => setSearchInput(e.target.value.toLowerCase())} type="text" className="grow" placeholder="Search" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -51,8 +53,11 @@ const Queries = () => {
       </div>
       <hr className="border-teal-500" />
       <div className={`grid gap-8 my-10 ${layout == 0 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" || layout == 1 && "grid-cols-1 md:max-w-2xl lg:max-w-3xl md:mx-auto" || layout == 2 && "grid-cols-1 md:grid-cols-2" || layout == 3 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"}`}>
-        {
+        {/* {
           queries.map(query => <QueriesCard key={query._id} query={query} />)
+        } */}
+        {
+          queries.filter(query => query.prod_name.toLowerCase().includes(searchInput)).map(query => <QueriesCard key={query._id} query={query} />)
         }
       </div>
     </div>
