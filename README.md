@@ -30,7 +30,7 @@
 
 ### 4. Live Link:
 ```
-https://bpl-2024-dream-team-squad.netlify.app/
+https://product-recommendation-s-8704d.web.app
 ```
-[Click to live](https://bpl-2024-dream-team-squad.netlify.app/)
+[Click to live](https://product-recommendation-s-8704d.web.app)
 
