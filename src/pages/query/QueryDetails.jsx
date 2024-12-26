@@ -8,9 +8,10 @@ import RecommendationCard from "../../components/RecommendationCard";
 
 const QueryDetails = () => {
   const [recommendations, setRecommendations] = useState([]);
+  // console.log(recommendations)
   const [query, setQuery] = useState({});
   const { user } = useAuth();
-  const {id} = useParams();
+  const { id } = useParams();
   // console.log(query);
   const { _id, prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt, recommendationCount } = query;
 
@@ -19,15 +20,16 @@ const QueryDetails = () => {
   const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
   const formattedDate = date.toLocaleDateString('en-US', options);
 
-  useEffect(() =>{
-    fetch(`http://localhost:5000/query-update/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      // console.log(data);
-      setQuery(data);
-    })
+  useEffect(() => {
+    fetch(`http://localhost:5000/query-details/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        setQuery(data);
+      })
   }, [id])
-  
+
+
   // handle Add Recommendation
   const handleAddRecommendation = (e) => {
     e.preventDefault();
@@ -68,6 +70,15 @@ const QueryDetails = () => {
             .then(data => {
               // console.log(data);
               if (data.modifiedCount > 0) {
+                // Load All Recommendations 
+                axios.get(`http://localhost:5000/recommendations/${_id}`)
+                  .then(res => {
+                    setRecommendations(res.data);
+                  })
+                  .catch(error => {
+                    console.log(error);
+                  })
+                // Finished data load
                 Swal.fire({
                   title: "Added!",
                   text: "Your recommendation added successfully!",
@@ -84,6 +95,8 @@ const QueryDetails = () => {
 
   // Load all recommendation based on particular query
   useEffect(() => {
+
+    if(!_id) return;
     axios.get(`http://localhost:5000/recommendations/${_id}`)
       .then(res => {
         // console.log(res.data);
@@ -91,10 +104,11 @@ const QueryDetails = () => {
       })
       .catch(error => {
         console.log(error);
-      })
+      });
+
   }, [_id]);
 
-  // console.log("total recommendation", recommendations?.length)
+
 
   return (
     <div className="card card-compact bg-base-100 max-w-3xl mx-auto shadow-xl my-10">

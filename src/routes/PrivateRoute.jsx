@@ -4,7 +4,7 @@ import { useAuth } from "../hook/useAuth";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const {pathname} = useLocation();
-  console.log(pathname)
+  // console.log(pathname)
   if (loading) {
     // return setLoading(true);
     return <span className="loading loading-bars loading-md my-3 hidden"></span>
