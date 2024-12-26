@@ -29,7 +29,7 @@ const Navbar = () => {
             console.log("ERROR From Logout", error.code);
           })
 
-        
+
       }
     });
 
@@ -46,10 +46,12 @@ const Navbar = () => {
             <NavLink to="/recommendations-for-me">Recommendations For Me</NavLink>
             <NavLink to="/my-queries">My Queries</NavLink>
             <NavLink to="/my-recommendations">My recommendations</NavLink>
+            {/* <button onClick={handleLogout} className="btn btn-error text-white">Logout</button>  */}
           </>
           : <>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/queries">Queries</NavLink>
+            {/* <Link to="/signIn" className="btn btn-warning text-white text-base">Login</Link> */}
           </>
       }
     </div>
@@ -76,6 +78,9 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-md z-[50] mt-3 w-52 p-2 shadow">
             {links}
+            {
+              user ? <button onClick={handleLogout} className="btn btn-error btn-sm my-2 text-white">Logout</button> : <Link to="/signIn" className="btn btn-warning btn-sm my-2 text-white text-base">Login</Link>
+            }
           </ul>
         </div>
         <div className="flex gap-1 items-center">

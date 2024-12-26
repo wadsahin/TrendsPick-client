@@ -8,7 +8,6 @@ const AddQueries = () => {
   const { displayName, email, photoURL } = user;
   // console.log(displayName, email, photoURL);
 
-
   const handleAddQuery = (e) => {
     e.preventDefault();
     const form = e.target;

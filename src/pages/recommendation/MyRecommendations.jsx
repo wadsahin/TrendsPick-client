@@ -2,13 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hook/useAuth";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const MyRecommendations = () => {
   const [recommendations, setRecommendations] = useState([]);
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   // console.log(user)
   useEffect(() => {
-    axios.get(`http://localhost:5000/my-recommendations?email=${user?.email}`)
+    axiosSecure.get(`http://localhost:5000/my-recommendations?email=${user?.email}`)
       .then(res => {
         // console.log(res.data);
         setRecommendations(res.data);

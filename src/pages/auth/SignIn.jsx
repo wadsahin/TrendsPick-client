@@ -1,11 +1,15 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hook/useAuth";
 import Swal from "sweetalert2";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location);
+  const from = location?.state || "/";
+ 
   // Get data from context
   const { loginWithGoogle, userLogin, setLoading } = useAuth();
 
@@ -25,7 +29,7 @@ const SignIn = () => {
           text: "You have successfully Logged-In.",
           icon: "success"
         });
-        navigate("/");
+        navigate(from);
       })
       .catch(error => {
         // console.log(error.message);
@@ -48,7 +52,7 @@ const SignIn = () => {
             text: "You have successfully Logged-In.",
             icon: "success"
           });
-          navigate("/");
+          navigate(from);
         }
       })
       .catch(error => {

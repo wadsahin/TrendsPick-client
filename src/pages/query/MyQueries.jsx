@@ -4,17 +4,18 @@ import { useAuth } from "../../hook/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MyQueryCard from "../../components/MyQueryCard";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 const MyQueries = () => {
   const [myQueries, setMyQueries] = useState([]);
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   // console.log(user)
   useEffect(() => {
-    axios.get(`http://localhost:5000/my-queries?email=${user?.email}`)
-      .then(res => {
-        // console.log(res.data);
-        setMyQueries(res.data);
-      })
-  }, [user])
+    
+    axiosSecure.get(`/my-queries?email=${user?.email}`)
+    .then(res => setMyQueries(res.data))
+
+  }, [user]);
   return (
     <div>
       {/* header start */}
