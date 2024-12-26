@@ -8,7 +8,7 @@ import Careers from "../../components/Careers";
 const Home = () => {
   const [queries, setQueries] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/recent-queries")
+    axios.get("https://product-recommendation-server-one.vercel.app/recent-queries")
       .then(res => {
         // console.log(res.data);
         setQueries(res.data);

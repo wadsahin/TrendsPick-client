@@ -21,7 +21,7 @@ const QueryDetails = () => {
   const formattedDate = date.toLocaleDateString('en-US', options);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/query-details/${id}`)
+    fetch(`https://product-recommendation-server-one.vercel.app/query-details/${id}`)
       .then(res => res.json())
       .then(data => {
         // console.log(data);
@@ -55,12 +55,12 @@ const QueryDetails = () => {
 
     // console.log(recommendationInfo);
     // Add recommendation into DB
-    axios.post("http://localhost:5000/add-recommendation", recommendationInfo)
+    axios.post("https://product-recommendation-server-one.vercel.app/add-recommendation", recommendationInfo)
       .then(res => {
         // console.log(res.data);
         if (res.data.insertedId) {
           // Increase Recommendation Count
-          fetch(`http://localhost:5000/recommendation-count/${_id}`, {
+          fetch(`https://product-recommendation-server-one.vercel.app/recommendation-count/${_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -71,7 +71,7 @@ const QueryDetails = () => {
               // console.log(data);
               if (data.modifiedCount > 0) {
                 // Load All Recommendations 
-                axios.get(`http://localhost:5000/recommendations/${_id}`)
+                axios.get(`https://product-recommendation-server-one.vercel.app/recommendations/${_id}`)
                   .then(res => {
                     setRecommendations(res.data);
                   })
@@ -97,7 +97,7 @@ const QueryDetails = () => {
   useEffect(() => {
 
     if(!_id) return;
-    axios.get(`http://localhost:5000/recommendations/${_id}`)
+    axios.get(`https://product-recommendation-server-one.vercel.app/recommendations/${_id}`)
       .then(res => {
         // console.log(res.data);
         setRecommendations(res.data);

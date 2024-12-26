@@ -26,7 +26,7 @@ const UpdateQuery = () => {
     };
     // console.log(updateInfo);
     // Update request
-    fetch(`http://localhost:5000/update-query/${id}`, {
+    fetch(`https://product-recommendation-server-one.vercel.app/update-query/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json"

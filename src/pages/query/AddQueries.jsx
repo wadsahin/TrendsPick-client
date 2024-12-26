@@ -32,7 +32,7 @@ const AddQueries = () => {
     // console.log(queryInfo);
 
     // Insert data to db
-    axios.post("http://localhost:5000/add-query", queryInfo)
+    axios.post("https://product-recommendation-server-one.vercel.app/add-query", queryInfo)
       .then(res => {
         // console.log(res.data);
         if (res.data.insertedId) {

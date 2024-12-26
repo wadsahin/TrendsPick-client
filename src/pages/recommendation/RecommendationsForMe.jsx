@@ -7,7 +7,7 @@ const RecommendationsForMe = () => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/recommendations-for-me?email=${user?.email}`)
+    axios.get(`https://product-recommendation-server-one.vercel.app/recommendations-for-me?email=${user?.email}`)
       .then(res => {
         // console.log(res.data);
         setRecommendations(res.data);

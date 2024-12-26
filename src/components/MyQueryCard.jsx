@@ -18,7 +18,7 @@ const MyQueryCard = ({ query, myQueries, setMyQueries }) => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/delete-query/${id}`, {
+        fetch(`https://product-recommendation-server-one.vercel.app/delete-query/${id}`, {
           method: "DELETE"
         })
           .then(res => res.json())

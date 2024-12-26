@@ -10,7 +10,7 @@ const MyRecommendations = () => {
   const { user } = useAuth();
   // console.log(user)
   useEffect(() => {
-    axiosSecure.get(`http://localhost:5000/my-recommendations?email=${user?.email}`)
+    axiosSecure.get(`https://product-recommendation-server-one.vercel.app/my-recommendations?email=${user?.email}`)
       .then(res => {
         // console.log(res.data);
         setRecommendations(res.data);
@@ -31,7 +31,7 @@ const MyRecommendations = () => {
       confirmButtonText: "Delete"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/my-recommendation-delete/${rec_id}`, {
+        fetch(`https://product-recommendation-server-one.vercel.app/my-recommendation-delete/${rec_id}`, {
           method: "DELETE",
         })
           .then(res => res.json())
@@ -42,7 +42,7 @@ const MyRecommendations = () => {
               setRecommendations(remaining);
 
               // Decreasing recommendation count
-              fetch(`http://localhost:5000/recommendation-decrease/${queryId}`, {
+              fetch(`https://product-recommendation-server-one.vercel.app/recommendation-decrease/${queryId}`, {
                 method: "PUT",
                 headers: {
                   "content-type": "application/json"

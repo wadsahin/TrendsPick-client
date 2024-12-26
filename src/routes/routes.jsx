@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       {
         path: "/queries",
         element: <Queries />,
-        loader: () => fetch("http://localhost:5000/all-queries"),
+        loader: () => fetch("https://product-recommendation-server-one.vercel.app/all-queries"),
       },
       {
         path: "/my-queries",
@@ -47,12 +47,12 @@ export const router = createBrowserRouter([
       {
         path: `/query-update/:id`,
         element: <PrivateRoute><UpdateQuery /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/query-update/${params.id}`)
+        loader: ({params}) => fetch(`https://product-recommendation-server-one.vercel.app/query-update/${params.id}`)
       },
       {
         path: "/query-details/:id",
         element: <PrivateRoute><QueryDetails /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/query-details/${params.id}`),
+        loader: ({params}) => fetch(`https://product-recommendation-server-one.vercel.app/query-details/${params.id}`),
       },
       {
         path: "/recommendations-for-me",
