@@ -71,7 +71,7 @@ const SignIn = () => {
           <p className="text-lg mb-3 text-gray-700">A platform for sharing knowledge and better understanding the world.</p>
           <p className="text-gray-500">By continuing you indicate that you agree to TrendPick's <span className="text-blue-600">Terms of Service</span> and <span className="text-blue-600">Privacy Policy.</span> </p>
           <div className="py-6">
-            <button onClick={handleGoogleLogin} className="border border-green-400 py-2 px-5 text-xl font-medium flex items-center gap-2 w-full justify-center">
+            <button onClick={handleGoogleLogin} className="border border-teal-500 py-2 px-5 text-xl font-medium flex items-center gap-2 w-full justify-center">
               <FcGoogle size={28} />
               Continue with Google
             </button>
@@ -98,7 +98,7 @@ const SignIn = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-orange-400 text-lg text-white">Sign In</button>
+              <button className="btn bg-teal-500 text-lg text-white">Sign In</button>
               <p>Don't have any account? Please <Link className="underline text-blue-600 font-medium" to="/signup">Signup</Link></p>
             </div>
           </form>

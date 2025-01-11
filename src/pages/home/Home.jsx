@@ -24,7 +24,7 @@ const Home = () => {
       <div className="w-11/12 lg:w-10/12 mx-auto">
         <div className="mb-10">
           <h2 className="text-center mt-5 text-4xl font-semibold">Recent Queries</h2>
-          <p className="border-b-2 border-b-orange-500 w-72 mx-auto mt-3"></p>
+          <p className="border-b-2 border-teal-600 w-72 mx-auto mt-3"></p>
         </div>
 
         {

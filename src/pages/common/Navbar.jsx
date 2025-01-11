@@ -57,7 +57,7 @@ const Navbar = () => {
     </div>
   </>
   return (
-    <div className="navbar justify-between bg-base-300 lg:px-5">
+    <div className="navbar justify-between bg-teal-500 lg:px-5 fixed z-30 bg-opacity-90 top-0">
       <div className="navbar-start w-fit">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -93,7 +93,7 @@ const Navbar = () => {
           {links}
         </ul>
         {
-          user ? <button onClick={handleLogout} className="btn btn-error text-white">Logout</button> : <Link to="/signIn" className="btn btn-warning text-white text-base">Login</Link>
+          user ? <button onClick={handleLogout} className="btn btn-error text-white">Logout</button> : <Link to="/signIn" className="btn bg-orange-400 border-none text-white text-base">Login</Link>
         }
 
       </div>

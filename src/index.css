@@ -4,7 +4,8 @@
 
 /* Active route styles */
 .active{
-  border: 1px solid orange;
+  border: 1px solid white;
+  color: white;
   padding: 0px 10px;
   border-radius: 5px;
 }
