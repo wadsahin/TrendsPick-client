@@ -57,7 +57,7 @@ const Navbar = () => {
     </div>
   </>
   return (
-    <div className="navbar justify-between bg-teal-500 lg:px-5 fixed z-30 bg-opacity-90 top-0">
+    <div className="navbar justify-between p-0 bg-teal-500 lg:px-5 fixed z-30 bg-opacity-90 top-0">
       <div className="navbar-start w-fit">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -76,7 +76,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-md z-[50] mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content rounded-md z-[50] mt-4 ml-1 w-52 p-2 bg-teal-500 bg-opacity-90">
             {links}
             {
               user ? <button onClick={handleLogout} className="btn btn-error btn-sm my-2 text-white">Logout</button> : <Link to="/signIn" className="btn btn-warning btn-sm my-2 text-white text-base">Login</Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
         </div>
         <div className="flex gap-1 items-center">
           <img className="w-28" src={logo} alt="logo" />
-          <a className="text-3xl font-semibold">TrendPick</a>
+          <a className="text-3xl font-semibold text-white">TrendPicks</a>
         </div>
       </div>
       <div className="hidden lg:flex gap-8 ">

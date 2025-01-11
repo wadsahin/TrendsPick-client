@@ -32,7 +32,7 @@ const MyQueries = () => {
             <p className="mb-5">
               All of the queries you have added can show at bellow. And if you want to add new query, You can hit on Add Queries button.
             </p>
-            <Link to="/add-queries" className="btn bg-lime-600 text-white text-base">Add Queries</Link>
+            <Link to="/add-queries" className="btn bg-teal-600 border-none text-white text-base">Add Queries</Link>
           </div>
         </div>
       </div>

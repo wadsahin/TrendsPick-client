@@ -49,7 +49,7 @@ const AddQueries = () => {
   }
 
   return (
-    <div className="card bg-base-100 w-full max-w-4xl mx-auto my-5 shrink-0">
+    <div className="w-full relative flex max-w-4xl h-svh items-center mx-auto shrink-0">
       <form onSubmit={handleAddQuery} className="card-body">
         {/* row 1 */}
         <div className="flex flex-col sm:flex-row gap-5">
@@ -92,7 +92,7 @@ const AddQueries = () => {
         </div>
 
         <div className="form-control mt-6 w-fit mx-auto">
-          <button className="btn bg-lime-500 text-white">Add Query</button>
+          <button className="btn bg-teal-500 text-white">Add Query</button>
         </div>
       </form>
     </div>

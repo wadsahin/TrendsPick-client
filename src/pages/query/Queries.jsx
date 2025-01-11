@@ -25,7 +25,7 @@ const Queries = () => {
     setLayout(3);
   }
   return (
-    <div className="w-11/12 lg:w-10/12 mx-auto ">
+    <div className="w-11/12 lg:w-10/12 mx-auto pb-3">
       <div className="py-5 flex justify-between gap-5">
         {/* Search part */}
         <div>

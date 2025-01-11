@@ -5,7 +5,7 @@ const RecentQueryCard = ({ query }) => {
   const { _id, prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt } = query;
 
   return (
-    <div className="card card-compact bg-base-100 shadow-xl">
+    <div className="card card-compact bg-base-100 border">
       <figure>
         <img
           className="h-[300px] object-cover"

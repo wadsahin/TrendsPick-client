@@ -6,7 +6,7 @@ const QueriesCard = ({ query }) => {
   const { _id, prod_name, prod_brand, prod_image, query_title, reason, user_name, user_email, user_photo, createdAt, recommendationCount } = query;
 
   return (
-    <div className="card card-compact bg-base-100 shadow-xl">
+    <div className="card card-compact bg-white border border-teal-500 py-2">
       <figure>
         <img
           className='h-80'

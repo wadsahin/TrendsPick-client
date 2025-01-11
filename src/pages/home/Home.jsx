@@ -18,7 +18,7 @@ const Home = () => {
       })
   }, [])
   return (
-    <div>
+    <div className="bg-gray-100 pb-5">
       {/* Slider */}
       <Carousel />
       <div className="w-11/12 lg:w-10/12 mx-auto">

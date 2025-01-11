@@ -17,7 +17,7 @@ import slider_img_5 from "../../assets/slider/slider-img-5.jpg"
 
 const Carousel = () => {
   return (
-    <div className='h-[520px]'>
+    <div style={{height: "72vh"}}>
       <Swiper
         direction={'vertical'}
         pagination={{

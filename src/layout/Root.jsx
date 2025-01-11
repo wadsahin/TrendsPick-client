@@ -13,7 +13,7 @@ const Root = () => {
       </div>
 
       {/* Dynamic routes */}
-      <div className="mb-10 mt-20 min-h-screen">
+      <div className="mb-10 mt-[72px] min-h-screen bg-gray-100">
         <div className="text-center">
           {
             loading && <span className="loading loading-bars loading-md my-3"></span>
