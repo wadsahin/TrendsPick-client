@@ -4,6 +4,7 @@ import axios from "axios";
 import RecentQueryCard from "../../components/RecentQueryCard";
 import OurPartners from "../../components/OurPartners";
 import Careers from "../../components/Careers";
+import Faq from "./Faq";
 
 const Home = () => {
   const [queries, setQueries] = useState([]);
@@ -50,6 +51,10 @@ const Home = () => {
         {/* Careers */}
         <div className="mt-16">
           <Careers />
+        </div>
+        {/* Faq section */}
+        <div className="mt-16">
+          <Faq />
         </div>
       </div>
 
