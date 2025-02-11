@@ -19,7 +19,7 @@ const Home = () => {
       })
   }, [])
   return (
-    <div className="bg-gray-100 pb-5">
+    <div className="bg-gray-100 pb-5 mt-[72px]">
       {/* Slider */}
       <Carousel />
       <div className="w-11/12 lg:w-10/12 mx-auto">
